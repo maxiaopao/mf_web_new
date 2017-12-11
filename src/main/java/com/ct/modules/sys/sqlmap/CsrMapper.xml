@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="csrMapper" >
+  <resultMap id="BaseResultMap" type="com.ct.modules.sys.entity.Csr" >
+    <id column="CSRID" property="csrid" jdbcType="VARCHAR" />
+    <result column="AGENTID" property="agentid" jdbcType="VARCHAR" />
+    <result column="CSRNAME" property="csrname" jdbcType="VARCHAR" />
+    <result column="PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="ASSIGNFLAG" property="assignflag" jdbcType="DECIMAL" />
+    <result column="DEPARTID" property="departid" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="BAK1" property="bak1" jdbcType="VARCHAR" />
+    <result column="BAK2" property="bak2" jdbcType="VARCHAR" />
+    <result column="BAK3" property="bak3" jdbcType="VARCHAR" />
+    <result column="BAK4" property="bak4" jdbcType="VARCHAR" />
+    <result column="BAK5" property="bak5" jdbcType="VARCHAR" />
+    <result column="postion" property="postion" jdbcType="DECIMAL" />
+    <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+    <result column="account_info" property="account_info" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="provense" property="provense" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="hospitalname" property="hospitalname" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+  <!-- 
+#############################################################
+###############        SQL_CSR_WHERE       ############# 
+#############################################################
+-->	
+    <sql id="SQL_CSR_WHERE">
+    	<if test="csrid !=null and csrid.length()!=0 ">
+			AND csrid=#{csrid}
+		</if>
+		<if test="agentid !=null and agentid.length()!=0 ">
+			AND agentid=#{agentid}
+		</if>
+		<if test="csrname !=null and csrname.length()!=0 ">
+			AND csrname=#{csrname}
+		</if>
+		<if test="passwd !=null and passwd.length()!=0 ">
+			AND passwd=#{passwd}
+		</if>
+		<if test="assignflag !=null ">
+			AND assignflag=#{assignflag}
+		</if>
+		<if test="departid !=null and departid.length()!=0 ">
+			AND departid=#{departid}
+		</if>
+		<if test="status !=null ">
+			AND status=#{status}
+		</if>
+		<if test="bak1 !=null and bak1.length()!=0 ">
+			AND BAK1=#{bak1}
+		</if>
+		<if test="bak2 !=null and bak2.length()!=0 ">
+			AND BAK2=#{bak2}
+		</if>
+		<if test="bak3 !=null and bak3.length()!=0 ">
+			AND BAK3=#{bak3}
+		</if>
+		<if test="bak4 !=null and bak4.length()!=0 ">
+			AND BAK4=#{bak4}
+		</if>
+		<if test="bak5 !=null and bak5.length()!=0 ">
+			AND BAK5=#{bak5}
+		</if>
+		<if test="postion !=null ">
+			AND postion=#{postion}
+		</if>
+		<if test="user_id !=null and user_id.length()!=0 ">
+			AND user_id=#{user_id}
+		</if>
+		<if test="account_info !=null and account_info.length()!=0 ">
+			AND account_info=#{account_info}
+		</if>
+		
+		<if test="groupid !=null and groupid.length()!=0 ">
+			AND groupid=#{groupid}
+		</if>
+		
+		<if test="1 == 1 ">
+			AND 1=1
+		</if>
+    </sql>	
+    <sql id="SQL_CSR_WHERE_V">
+    	<if test="csrid !=null and csrid.length()!=0 ">
+			AND csrid=#{csrid}
+		</if>
+		<if test="agentid !=null and agentid.length()!=0 ">
+			AND agentid=#{agentid}
+		</if>
+		<if test="csrname !=null and csrname.length()!=0 ">
+			AND csrname=#{csrname}
+		</if>
+		<if test="passwd !=null and passwd.length()!=0 ">
+			AND passwd=#{passwd}
+		</if>
+		<if test="assignflag !=null ">
+			AND assignflag=#{assignflag}
+		</if>
+		<if test="departid !=null and departid.length()!=0 ">
+			AND departid=#{departid}
+		</if>
+		<if test="status !=null ">
+			AND status=#{status}
+		</if>
+		<if test="bak1 !=null and bak1.length()!=0 ">
+			AND BAK1=#{bak1}
+		</if>
+		<if test="bak2 !=null and bak2.length()!=0 ">
+			AND BAK2=#{bak2}
+		</if>
+		<if test="bak3 !=null and bak3.length()!=0 ">
+			AND BAK3=#{bak3}
+		</if>
+		<if test="bak4 !=null and bak4.length()!=0 ">
+			AND BAK4=#{bak4}
+		</if>
+		<if test="bak5 !=null and bak5.length()!=0 ">
+			AND BAK5=#{bak5}
+		</if>
+		<if test="postion !=null ">
+			AND postion=#{postion}
+		</if>
+		<if test="user_id !=null and user_id.length()!=0 ">
+			AND user_id=#{user_id}
+		</if>
+		<if test="account_info !=null and account_info.length()!=0 ">
+			AND account_info=#{account_info}
+		</if>
+		<if test="1 == 1 ">
+			AND 1=1
+		</if>
+    </sql>	
+    
+  
+  
+  
+  <sql id="Base_Column_List" >
+  CSRID, AGENTID, CSRNAME, 
+      PASSWD, ASSIGNFLAG, DEPARTID, 
+      POSTION, STATUS, USER_ID, 
+      ACCOUNT_INFO, sex, phone, 
+      provense, city, hospitalname, 
+      department, job, bak1, 
+      bak2, bak3, bak4, bak5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_csr
+    where CSRID = #{csrid,jdbcType=VARCHAR}
+  </select>
+  
+  <insert id="insert" parameterType="com.ct.modules.sys.entity.Csr" >
+    insert into ht_csr (CSRID, AGENTID, CSRNAME, 
+      PASSWD, ASSIGNFLAG, DEPARTID, 
+      STATUS, BAK1, BAK2, 
+      BAK3, BAK4, BAK5,POSTION,user_id,account_info,sex,phone,provense,city,hospitalname,department,job,groupid)
+    values (#{csrid,jdbcType=VARCHAR}, #{agentid,jdbcType=VARCHAR}, #{csrname,jdbcType=VARCHAR}, 
+      #{passwd,jdbcType=VARCHAR}, #{assignflag,jdbcType=DECIMAL}, #{departid,jdbcType=VARCHAR}, 
+      #{status,jdbcType=DECIMAL}, #{bak1,jdbcType=VARCHAR}, #{bak2,jdbcType=VARCHAR}, 
+      #{bak3,jdbcType=VARCHAR}, #{bak4,jdbcType=VARCHAR}, #{bak5,jdbcType=VARCHAR},#{postion,jdbcType=DECIMAL},
+      #{user_id,jdbcType=VARCHAR},#{account_info,jdbcType=VARCHAR},
+      #{sex,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR},
+      #{provense,jdbcType=VARCHAR},
+       #{city,jdbcType=VARCHAR},
+      #{hospitalname,jdbcType=VARCHAR},
+      #{department,jdbcType=VARCHAR},
+      #{job,jdbcType=VARCHAR},
+       #{groupid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ct.modules.sys.entity.Csr" >
+    insert into ht_csr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+     <if test="user_id != null" >
+        user_id,
+      </if>
+      <if test="csrid != null" >
+        CSRID,
+      </if>
+      <if test="agentid != null" >
+        AGENTID,
+      </if>
+      <if test="csrname != null" >
+        CSRNAME,
+      </if>
+      <if test="passwd != null" >
+        PASSWD,
+      </if>
+      <if test="assignflag != null" >
+        ASSIGNFLAG,
+      </if>
+      <if test="departid != null" >
+        DEPARTID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+     
+      <if test="bak1 != null" >
+        BAK1,
+      </if>
+      <if test="bak2 != null" >
+        BAK2,
+      </if>
+      <if test="bak3 != null" >
+        BAK3,
+      </if>
+      <if test="bak4 != null" >
+        BAK4,
+      </if>
+      <if test="bak5 != null" >
+        BAK5,
+      </if>
+      <if test="postion != null" >
+        POSTION,
+      </if>
+       <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="provense != null" >
+        provense,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="hospitalname != null" >
+        hospitalname,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="user_id != null" >
+        #{user_id,jdbcType=VARCHAR},
+      </if>
+      <if test="csrid != null" >
+        #{csrid,jdbcType=VARCHAR},
+      </if>
+      <if test="agentid != null" >
+        #{agentid,jdbcType=VARCHAR},
+      </if>
+      <if test="csrname != null" >
+        #{csrname,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="assignflag != null" >
+        #{assignflag,jdbcType=DECIMAL},
+      </if>
+      <if test="departid != null" >
+        #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="bak1 != null" >
+        #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="bak3 != null" >
+        #{bak3,jdbcType=VARCHAR},
+      </if>
+      <if test="bak4 != null" >
+        #{bak4,jdbcType=VARCHAR},
+      </if>
+      <if test="bak5 != null" >
+        #{bak5,jdbcType=VARCHAR},
+      </if>
+      <if test="postion != null" >
+        #{postion,jdbcType=DECIMAL},
+      </if>
+       <if test="sex != null" >
+         #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null" >
+           #{phone,jdbcType=DECIMAL},
+      </if>
+      <if test="provense != null" >
+             #{provense,jdbcType=DECIMAL},
+      </if>
+      <if test="city != null" >
+           #{city,jdbcType=DECIMAL},
+      </if>
+      <if test="hospitalname != null" >
+          #{hospitalname,jdbcType=DECIMAL},
+      </if>
+      <if test="department != null" >
+         #{department,jdbcType=DECIMAL},
+      </if>
+      <if test="job != null" >
+          #{job,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ht_csr
+    where user_id = #{user_id,jdbcType=VARCHAR}
+  </delete>
+  
+  
+  <update id="updatePasswd" parameterType="com.ct.modules.sys.entity.Csr" >
+   update ht_csr  set PASSWD = #{passwdnew,jdbcType=VARCHAR} where CSRID = #{csrid,jdbcType=VARCHAR} and 
+   
+   passwd=#{passwd,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ct.modules.sys.entity.Csr" >
+    update ht_csr
+    <set >
+      <if test="agentid != null" >
+        AGENTID = #{agentid,jdbcType=VARCHAR},
+      </if>
+      <if test="csrname != null" >
+        CSRNAME = #{csrname,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        PASSWD = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="assignflag != null" >
+        ASSIGNFLAG = #{assignflag,jdbcType=DECIMAL},
+      </if>
+      <if test="departid != null" >
+        DEPARTID = #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="bak1 != null" >
+        BAK1 = #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        BAK2 = #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="bak3 != null" >
+        BAK3 = #{bak3,jdbcType=VARCHAR},
+      </if>
+      <if test="bak4 != null" >
+        BAK4 = #{bak4,jdbcType=VARCHAR},
+      </if>
+      <if test="bak5 != null" >
+        BAK5 = #{bak5,jdbcType=VARCHAR},
+      </if>
+      <if test="postion != null" >
+        postion = #{postion,jdbcType=DECIMAL},
+      </if>
+      <if test="csrid != null" >
+        csrid = #{csrid,jdbcType=VARCHAR},
+      </if>
+      <if test="account_info != null" >
+        account_info = #{account_info,jdbcType=VARCHAR},
+      </if>
+       <if test="sex != null" >
+        sex=#{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone=#{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="provense != null" >
+          provense=#{provense,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+          city=#{city,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalname != null" >
+          hospitalname=#{hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+         department=#{department,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+          job=#{job,jdbcType=VARCHAR},
+      </if>
+       <if test="groupid != null" >
+        groupid = #{groupid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{user_id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ct.modules.sys.entity.Csr" >
+    update ht_csr
+    set AGENTID = #{agentid,jdbcType=VARCHAR},
+      CSRNAME = #{csrname,jdbcType=VARCHAR},
+      PASSWD = #{passwd,jdbcType=VARCHAR},
+      ASSIGNFLAG = #{assignflag,jdbcType=DECIMAL},
+      DEPARTID = #{departid,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      BAK1 = #{bak1,jdbcType=VARCHAR},
+      BAK2 = #{bak2,jdbcType=VARCHAR},
+      BAK3 = #{bak3,jdbcType=VARCHAR},
+      BAK4 = #{bak4,jdbcType=VARCHAR},
+      BAK5 = #{bak5,jdbcType=VARCHAR},
+      POSTION=#{postion,jdbcType=DECIMAL}
+    where CSRID = #{csrid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getAllByPage" parameterType="com.ct.modules.sys.entity.Csr" resultType="com.ct.modules.sys.entity.Csr">
+ 		
+ 		SELECT
+	c.csrid,
+	c.agentid,
+	c.csrname,
+	c.passwd,
+	c.assignflag,
+	c.departid,
+	c. STATUS,
+	c.bak1,
+	c.bak2,
+	c.bak3,
+	c.bak4,
+	c.bak5,
+	c.postion,
+	c.user_id,
+	c.account_info,
+	c.sex,
+	c.phone,
+	c.provense,
+	c.city,
+	c.hospitalname,
+	c.department,
+	c.job,
+	d.departname,
+	c.groupid,
+	e.groupname
+FROM
+	ht_csr c,
+	ht_depart d,
+ht_group e
+WHERE
+	c.departid = d.departid and
+c.groupId = e.groupID
+AND c. STATUS = 1 
+
+		<if test="csrid !=null and csrid.length()!=0 ">
+			AND c.csrid=#{csrid}
+		</if>
+		<if test="csrname !=null and csrname.length()!=0 ">
+			AND c.csrname  LIKE concat(concat('%',#{csrname}),'%')
+		</if>
+		<if test="departid !=null and departid.length()!=0 ">
+			AND c.departid=#{departid}
+		</if>
+
+order by  ${sort} ${order}  		
+ 		
+	</select> 
+	
+	<!-- 
+#############################################################################
+##########   查询具体的某条数据    ******get               ##############
+#############################################################################
+-->
+    <select id="get" parameterType="com.ct.modules.sys.entity.Csr" resultType="com.ct.modules.sys.entity.Csr">
+		select CSRID, AGENTID, CSRNAME, 
+      PASSWD, ASSIGNFLAG, DEPARTID, 
+      POSTION, STATUS, USER_ID, 
+      ACCOUNT_INFO, sex, phone, 
+      provense, city, hospitalname, 
+      department, job, bak1, 
+      bak2, bak3, bak4, bak5,groupid
+		from ht_csr
+		<where>
+			<include  refid="SQL_CSR_WHERE"/>
+		</where> 
+	</select>
+	
+	<select id="checkCsrid" parameterType="com.ct.modules.sys.entity.Csr" resultType="com.ct.modules.sys.entity.Csr">
+		select CSRID, AGENTID, CSRNAME, 
+      PASSWD, ASSIGNFLAG, DEPARTID, 
+      POSTION, STATUS, USER_ID, 
+      ACCOUNT_INFO, sex, phone, 
+      provense, city, hospitalname, 
+      department, job, bak1, 
+      bak2, bak3, bak4, bak5
+		from ht_csr where CSRID = #{csrid,jdbcType=VARCHAR} and status=1
+	</select>
+	
+	<select id="login" parameterType="com.ct.modules.sys.entity.Csr" resultType="com.ct.modules.sys.entity.Csr">
+		select c.csrid,
+						       c.agentid,
+						       c.csrname,
+						       c.passwd,
+						       c.assignflag,
+						       c.departid,
+						       c.status,
+						       c.bak1,
+						       c.bak2,
+						       c.bak3,
+						       c.bak4,
+						       c.bak5,
+						       c.postion,
+						       c.user_id,
+						       c.account_info,
+						        c.sex, 
+						       	c.phone, 
+      							c.provense, 
+      							c.city, 
+      							c.hospitalname, 
+      							c.department, 
+						        c.job,
+						       d.departname
+		from ht_csr c , ht_depart d where c.departid = d.departid
+		and c.csrid= #{csrid,jdbcType=VARCHAR}   and c.passwd=  #{passwd,jdbcType=VARCHAR} and c.status=1
+		
+	</select>
+	
+
+<!-- 根据拥有者属性查询csr -->	
+<select id="queryCsrByobType" parameterType="com.ct.modules.sys.entity.Csr" resultType="com.ct.modules.sys.entity.Csr">
+	   select 
+   			 <include refid="Base_Column_List" />
+   			 from ht_csr
+   			<where>
+			<include  refid="SQL_CSR_WHERE"/>
+			</where> 
+	</select>
+	<!-- 根据拥有者属性查询csr -->	
+<select id="queryCsrByobType2" parameterType="com.ct.modules.sys.entity.Csr" resultType="com.ct.modules.sys.entity.Csr">
+	   select  CSRID, CSRID ,concat(CSRID,'(',CSRNAME,')') cs
+			from ht_csr
+   			<where>
+			<include  refid="SQL_CSR_WHERE"/>
+			</where> 
+	</select>
+	
+	<!-- 查询所有工号 -->	
+	<select id="queryAllCsr" parameterType="com.ct.modules.sys.entity.Csr" resultType="com.ct.modules.sys.entity.Csr">
+	   select  CSRID, CSRID ,concat(CSRID,'(',CSRNAME,')') cs
+			from ht_csr
+   			<where>
+			<include  refid="SQL_CSR_WHERE"/>
+			</where> 
+	</select>
+</mapper>

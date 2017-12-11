@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="groupMapper" >
+
+	
+
+	<!--  表where条件 -->	
+    <sql id="SQL_GROUP_WHERE">
+		<if test="groupname !=null and groupname.length()!=0">
+			AND groupName=#{groupname}
+		</if>
+		<if test="status !=null">
+			AND status=#{status}
+		</if>
+		<if test="groupdesc !=null and groupdesc.length()!=0">
+			AND groupDesc=#{groupdesc}
+		</if>
+		<if test="bak1 !=null and bak1.length()!=0">
+			AND bak1=#{bak1}
+		</if>
+		<if test="bak2 !=null and bak2.length()!=0">
+			AND bak2=#{bak2}
+		</if>
+		<if test="bak3 !=null and bak3.length()!=0">
+			AND bak3=#{bak3}
+		</if>
+		<if test="bak4 !=null and bak4.length()!=0">
+			AND bak4=#{bak4}
+		</if>
+		<if test="bak5 !=null and bak5.length()!=0">
+			AND bak5=#{bak5}
+		</if>
+		<if test="1 == 1 ">
+			AND 1=1 AND status =1
+		</if>
+    </sql>	
+    
+    <!--  字段 -->	
+	<sql id="Base_Column_List" >
+		groupName,status,groupDesc,bak1,bak2,bak3,bak4,bak5,groupID
+	</sql>
+	
+	<!-- 根据主键查询 -->	
+	<select id="selectByPrimaryKey" resultType="com.ct.modules.sys.entity.Group" parameterType="com.ct.modules.sys.entity.Group" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from ht_group
+	    where groupID = #{groupid} and status =1
+  	</select>
+  	
+  	<!-- 根据主键删除 -->	
+  	<delete id="deleteByPrimaryKey" parameterType="com.ct.modules.sys.entity.Group" >
+	    delete from ht_group
+	    where groupID = #{groupid}
+	</delete>
+	
+	<!-- 插入 -->	
+	<insert id="insert" parameterType="com.ct.modules.sys.entity.Group" >
+	    insert into ht_group 
+	    (
+	     <include refid="Base_Column_List" />
+		)
+	    values 
+	    (
+			#{groupname},	
+			#{status},	
+			#{groupdesc},	
+			#{bak1},	
+			#{bak2},	
+			#{bak3},	
+			#{bak4},	
+			#{bak5},	
+			#{groupid}
+	    )
+	</insert>
+	
+	<!-- 更具选中的更新 -->
+	<update id="updateByPrimaryKey" parameterType="com.ct.modules.sys.entity.Group" >
+	    update ht_group 
+	    <set >
+			<if test="groupname !=null">
+				groupName=#{groupname},
+			</if>
+			<if test="status !=null">
+				status=#{status},
+			</if>
+			<if test="groupdesc !=null">
+				groupDesc=#{groupdesc},
+			</if>
+			<if test="bak1 !=null">
+				bak1=#{bak1},
+			</if>
+			<if test="bak2 !=null">
+				bak2=#{bak2},
+			</if>
+			<if test="bak3 !=null">
+				bak3=#{bak3},
+			</if>
+			<if test="bak4 !=null">
+				bak4=#{bak4},
+			</if>
+			<if test="bak5 !=null">
+				bak5=#{bak5},
+			</if>
+	    </set>
+	    where groupID = #{groupid}
+  	</update>
+  	
+  	<!-- 分页查询列表 -->
+  	<select id="getAllByPage" parameterType="com.ct.modules.sys.entity.Group" resultType="com.ct.modules.sys.entity.Group">
+ 		select 
+ 		<include refid="Base_Column_List" />
+ 		from ht_group
+		<where>
+			<include  refid="SQL_GROUP_WHERE"/>
+		</where> 
+		order by ${sort} ${order}
+	</select> 
+	
+	<!-- 查询根据数据查询全部  -->
+	<select id="getGroupList" parameterType="com.ct.modules.sys.entity.Group" resultType="com.ct.modules.sys.entity.Group">
+		select 
+		<include refid="Base_Column_List" />
+		from ht_group
+		<where>
+			<include  refid="SQL_GROUP_WHERE"/>
+		</where> 
+	</select>
+    
+    
+    
+  
+</mapper>

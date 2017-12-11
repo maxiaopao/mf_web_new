@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="studentMapper" >
+
+	
+
+	<!--  表where条件 -->	
+    <sql id="SQL_STUDENT_WHERE">
+		<if test="name !=null and name.length()!=0">
+			AND name=#{name}
+		</if>
+		<if test="phonenum !=null and phonenum.length()!=0">
+			AND phonenum=#{phonenum}
+		</if>
+		<if test="birthday !=null">
+			AND birthday=#{birthday}
+		</if>
+		<if test="1 == 1 ">
+			AND 1=1
+		</if>
+    </sql>	
+    
+    <!--  字段 -->	
+	<sql id="Base_Column_List" >
+		name,phonenum,birthday,id
+	</sql>
+	
+	<!-- 根据主键查询 -->	
+	<select id="selectByPrimaryKey" resultType="com.ct.modules.test.entity.Student" parameterType="com.ct.modules.test.entity.Student" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from student
+	    where id = #{id}
+  	</select>
+  	
+  	<!-- 根据主键删除 -->	
+  	<delete id="deleteByPrimaryKey" parameterType="com.ct.modules.test.entity.Student" >
+	    delete from student
+	    where id = #{id}
+	</delete>
+	
+	<!-- 插入 -->	
+	<insert id="insert" parameterType="com.ct.modules.test.entity.Student" >
+	    insert into student 
+	    (
+	     <include refid="Base_Column_List" />
+		)
+	    values 
+	    (
+			#{name},	
+			#{phonenum},	
+			#{birthday},	
+			#{id}
+	    )
+	</insert>
+	
+	<!-- 更具选中的更新 -->
+	<update id="updateByPrimaryKey" parameterType="com.ct.modules.test.entity.Student" >
+	    update student 
+	    <set >
+			<if test="name !=null">
+				name=#{name},
+			</if>
+			<if test="phonenum !=null">
+				phonenum=#{phonenum},
+			</if>
+			<if test="birthday !=null">
+				birthday=#{birthday},
+			</if>
+	    </set>
+	    where id = #{id}
+  	</update>
+  	
+  	<!-- 分页查询列表 -->
+  	<select id="getAllByPage" parameterType="com.ct.modules.test.entity.Student" resultType="com.ct.modules.test.entity.Student">
+ 		select 
+ 		<include refid="Base_Column_List" />
+ 		from student
+		<where>
+			<include  refid="SQL_STUDENT_WHERE"/>
+		</where> 
+		order by   ${sort} ${order}
+	</select> 
+	
+	<!-- 查询根据数据查询全部  -->
+	<select id="getStudentList" parameterType="com.ct.modules.test.entity.Student" resultType="com.ct.modules.test.entity.Student">
+		select 
+		<include refid="Base_Column_List" />
+		from student
+		<where>
+			<include  refid="SQL_STUDENT_WHERE"/>
+		</where> 
+	</select>
+    
+    
+    
+  
+</mapper>

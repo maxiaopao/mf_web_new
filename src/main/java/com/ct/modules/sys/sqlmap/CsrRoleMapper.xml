@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="csrRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.ct.modules.sys.entity.CsrRole" >
+    <result column="CSRID" property="csrid" jdbcType="VARCHAR" />
+    <result column="ROLEID" property="roleid" jdbcType="VARCHAR" />
+    <result column="STARTTIME" property="starttime" jdbcType="DATE" />
+    <result column="ENDTIME" property="endtime" jdbcType="DATE" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <!-- 
+#############################################################
+###############        SQL_CSRROLE_WHERE       ############# 
+#############################################################
+-->	
+    <sql id="SQL_CSRROLE_WHERE">
+    	<if test="csrid !=null and csrid.length()!=0 ">
+			AND csrid=#{csrid}
+		</if>
+		<if test="roleid !=null and roleid.length()!=0 ">
+			AND roleid=#{roleid}
+		</if>
+		<if test="status !=null ">
+			AND status=#{status}
+		</if>
+		<if test="1 == 1 ">
+			AND 1=1
+		</if>
+    </sql>	
+  
+  <insert id="insert" parameterType="com.ct.modules.sys.entity.CsrRole" >
+    insert into ht_csr_role (CSRID, ROLEID, STARTTIME, 
+      ENDTIME, STATUS)
+    values (#{csrid,jdbcType=VARCHAR}, #{roleid,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}, 
+      #{endtime,jdbcType=DATE}, #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ct.modules.sys.entity.CsrRole" >
+    insert into ht_csr_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="csrid != null" >
+        CSRID,
+      </if>
+      <if test="roleid != null" >
+        ROLEID,
+      </if>
+      <if test="starttime != null" >
+        STARTTIME,
+      </if>
+      <if test="endtime != null" >
+        ENDTIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="csrid != null" >
+        #{csrid,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="getRoleidByCsrid" parameterType="com.ct.modules.sys.entity.CsrRole" resultType="com.ct.modules.sys.entity.CsrRole">
+		select CSRID, ROLEID, STARTTIME, ENDTIME, STATUS
+		from ht_csr_role
+		<where>
+			<include  refid="SQL_CSRROLE_WHERE"/>
+		</where> 
+	</select>
+	
+	<delete id="delete" parameterType="com.ct.modules.sys.entity.CsrRole">
+		delete from ht_csr_role  where csrid = #{csrid}
+	</delete>
+	
+	 <update id="deleteCsrRole" parameterType="com.ct.modules.sys.entity.CsrRole" >
+    update ht_depart
+    
+    <set >
+      <if test="csrid != null" >
+        csrid = #{csrid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where roleid = #{roleid,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

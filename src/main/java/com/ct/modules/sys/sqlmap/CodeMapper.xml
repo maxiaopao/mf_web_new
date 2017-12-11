@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="codeMapper" >
+
+	
+	<select id="getAllByPage" parameterType="com.ct.modules.sys.entity.Code" resultType="java.util.Map">
+ 		select table_name,table_comment,create_time,table_collation from information_schema.tables where table_schema= #{databaseurl}
+        order by  ${sort} ${order} 
+	</select> 
+	
+	
+	<select id="getByTableName" parameterType="com.ct.modules.sys.entity.Code" resultType="java.util.Map">
+ 		SELECT column_name,table_name, column_comment, data_type, column_type,column_key,is_nullable,character_maximum_length FROM information_schema.COLUMNS
+		WHERE table_name = #{tablename} AND table_schema = #{databaseurl} 
+	</select> 
+	
+  
+</mapper>

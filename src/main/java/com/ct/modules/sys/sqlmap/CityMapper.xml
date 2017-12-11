@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cityMapper" >
+  <resultMap id="BaseResultMap" type="com.ct.modules.sys.entity.City" >
+    <result column="cityid" property="cityid" jdbcType="VARCHAR" />
+    <result column="provinceid" property="provinceid" jdbcType="VARCHAR" />
+    <result column="provincename" property="provincename" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByPrimaryKey" parameterType="com.ct.modules.sys.entity.City" resultType="com.ct.modules.sys.entity.City" >
+  SELECT c.cityname 
+  from city c,
+  province p 
+  where p.provinceid=c.provinceid 
+  and
+   c.provinceid = #{provinceid,jdbcType=VARCHAR}
+  </select>
+</mapper>

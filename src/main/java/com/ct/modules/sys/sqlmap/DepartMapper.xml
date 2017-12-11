@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="departMapper" >
+
+  <resultMap id="BaseResultMap" type="com.ct.modules.sys.entity.Depart" >
+    <id column="DEPARTID" property="departid" jdbcType="VARCHAR" />
+    <result column="DEPARTNAME" property="departname" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="DEPARTDESC" property="departdesc" jdbcType="VARCHAR" />
+    <result column="BAK1" property="bak1" jdbcType="VARCHAR" />
+    <result column="BAK2" property="bak2" jdbcType="VARCHAR" />
+    <result column="BAK3" property="bak3" jdbcType="VARCHAR" />
+    <result column="BAK4" property="bak4" jdbcType="VARCHAR" />
+    <result column="BAK5" property="bak5" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 
+#############################################################
+###############        SQL_DEPART_WHERE       ############# 
+#############################################################
+-->	
+    <sql id="SQL_DEPART_WHERE">
+    	<if test="departid !=null and departid.length()!=0 ">
+			AND DEPARTID=#{departid}
+		</if>
+		<if test="departname !=null and departname.length()!=0 ">
+			AND DEPARTNAME=#{departname}
+		</if>
+		<if test="status !=null ">
+			AND status=#{status}
+		</if>
+		<if test="departdesc !=null and departdesc.length()!=0 ">
+			AND departdesc=#{departdesc}
+		</if>
+		<if test="bak1 !=null and bak1.length()!=0 ">
+			AND BAK1=#{bak1}
+		</if>
+		<if test="bak2 !=null and bak2.length()!=0 ">
+			AND BAK2=#{bak2}
+		</if>
+		<if test="bak3 !=null and bak3.length()!=0 ">
+			AND BAK3=#{bak3}
+		</if>
+		<if test="bak4 !=null and bak4.length()!=0 ">
+			AND BAK4=#{bak4}
+		</if>
+		<if test="bak5 !=null and bak5.length()!=0 ">
+			AND BAK5=#{bak5}
+		</if>
+		<if test="1 == 1 ">
+			AND 1=1
+		</if>
+    </sql>	
+  
+  
+  
+  <sql id="Base_Column_List" >
+    DEPARTID, DEPARTNAME, STATUS, DEPARTDESC, BAK1, BAK2, BAK3, BAK4, BAK5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_depart
+    where DEPARTID = #{departid,jdbcType=VARCHAR} and status = 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ht_depart
+    where DEPARTID = #{departid,jdbcType=VARCHAR}
+  </delete>
+  
+  
+  
+  <insert id="insert" parameterType="com.ct.modules.sys.entity.Depart" >
+    insert into ht_depart (DEPARTID, DEPARTNAME, STATUS, 
+      DEPARTDESC, BAK1, BAK2, 
+      BAK3, BAK4, BAK5)
+    values (#{departid,jdbcType=VARCHAR}, #{departname,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, 
+      #{departdesc,jdbcType=VARCHAR}, #{bak1,jdbcType=VARCHAR}, #{bak2,jdbcType=VARCHAR}, 
+      #{bak3,jdbcType=VARCHAR}, #{bak4,jdbcType=VARCHAR}, #{bak5,jdbcType=VARCHAR})
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="com.ct.modules.sys.entity.Depart" >
+    insert into ht_depart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departid != null" >
+        DEPARTID,
+      </if>
+      <if test="departname != null" >
+        DEPARTNAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="departdesc != null" >
+        DEPARTDESC,
+      </if>
+      <if test="bak1 != null" >
+        BAK1,
+      </if>
+      <if test="bak2 != null" >
+        BAK2,
+      </if>
+      <if test="bak3 != null" >
+        BAK3,
+      </if>
+      <if test="bak4 != null" >
+        BAK4,
+      </if>
+      <if test="bak5 != null" >
+        BAK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="departid != null" >
+        #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="departname != null" >
+        #{departname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="departdesc != null" >
+        #{departdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bak1 != null" >
+        #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="bak3 != null" >
+        #{bak3,jdbcType=VARCHAR},
+      </if>
+      <if test="bak4 != null" >
+        #{bak4,jdbcType=VARCHAR},
+      </if>
+      <if test="bak5 != null" >
+        #{bak5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ct.modules.sys.entity.Depart" >
+    update ht_depart
+    <set >
+      <if test="departname != null" >
+        DEPARTNAME = #{departname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="departdesc != null" >
+        DEPARTDESC = #{departdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bak1 != null" >
+        BAK1 = #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        BAK2 = #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="bak3 != null" >
+        BAK3 = #{bak3,jdbcType=VARCHAR},
+      </if>
+      <if test="bak4 != null" >
+        BAK4 = #{bak4,jdbcType=VARCHAR},
+      </if>
+      <if test="bak5 != null" >
+        BAK5 = #{bak5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPARTID = #{departid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ct.modules.sys.entity.Depart" >
+    update ht_depart
+    set DEPARTNAME = #{departname,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      DEPARTDESC = #{departdesc,jdbcType=VARCHAR},
+      BAK1 = #{bak1,jdbcType=VARCHAR},
+      BAK2 = #{bak2,jdbcType=VARCHAR},
+      BAK3 = #{bak3,jdbcType=VARCHAR},
+      BAK4 = #{bak4,jdbcType=VARCHAR},
+      BAK5 = #{bak5,jdbcType=VARCHAR}
+    where DEPARTID = #{departid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getAllByPage" parameterType="com.ct.modules.sys.entity.Depart" resultType="com.ct.modules.sys.entity.Depart">
+ 		select * 
+         				from ht_depart 
+         				<where>
+							<include  refid="SQL_DEPART_WHERE"/>
+						</where> 
+         				order by  ${sort} ${order}
+	</select> 
+	
+	<!-- 
+#############################################################################
+##########   查询具体的某条数据    ******get               ##############
+#############################################################################
+-->
+    <select id="get" parameterType="com.ct.modules.sys.entity.Depart" resultType="com.ct.modules.sys.entity.Depart">
+		select  DEPARTID, DEPARTNAME, STATUS, DEPARTDESC, BAK1, BAK2, BAK3, BAK4, BAK5
+		from ht_depart
+		<where>
+			<include  refid="SQL_DEPART_WHERE"/>
+		</where> 
+	</select>
+  
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="provinceMapper" >
+  <resultMap id="BaseResultMap" type="com.ct.modules.sys.entity.Province" >
+    <result column="provinceid" property="provinceid" jdbcType="VARCHAR" />
+    <result column="provincename" property="provincename" jdbcType="VARCHAR" />
+  </resultMap>
+    <select id="selectByPrimaryKey" parameterType="com.ct.modules.sys.entity.Province" resultType="com.ct.modules.sys.entity.Province" >
+    select
+    provinceid,
+    provincename
+    from province
+  </select>
+</mapper>

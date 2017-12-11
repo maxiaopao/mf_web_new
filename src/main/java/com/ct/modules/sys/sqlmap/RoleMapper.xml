@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="roleMapper" >
+  <resultMap id="BaseResultMap" type="com.ct.modules.sys.entity.Role" >
+    <id column="ROLEID" property="roleid" jdbcType="VARCHAR" />
+    <result column="ROLENAME" property="rolename" jdbcType="VARCHAR" />
+    <result column="ROLETYPE" property="roletype" jdbcType="DECIMAL" />
+    <result column="ROLECODE" property="rolecode" jdbcType="VARCHAR" />
+    <result column="STARTTIME" property="starttime" jdbcType="DATE" />
+    <result column="ENDTIME" property="endtime" jdbcType="DATE" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="BAK1" property="bak1" jdbcType="VARCHAR" />
+    <result column="BAK2" property="bak2" jdbcType="VARCHAR" />
+    <result column="BAK3" property="bak3" jdbcType="VARCHAR" />
+    <result column="BAK4" property="bak4" jdbcType="VARCHAR" />
+    <result column="BAK5" property="bak5" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <!-- 
+#############################################################
+###############        SQL_ROLE_WHERE       ############# 
+#############################################################
+-->	
+    <sql id="SQL_ROLE_WHERE">
+    	<if test="roleid !=null and roleid.length()!=0 ">
+			AND roleid=#{roleid}
+		</if>
+		<if test="rolename !=null and rolename.length()!=0 ">
+			AND rolename=#{rolename}
+		</if>
+		<if test="roletype !=null ">
+			AND roletype=#{roletype}
+		</if>
+		<if test="status !=null ">
+			AND status=#{status}
+		</if>
+		<if test="rolecode !=null and rolecode.length()!=0 ">
+			AND rolecode=#{rolecode}
+		</if>
+		<if test="bak1 !=null and bak1.length()!=0 ">
+			AND BAK1=#{bak1}
+		</if>
+		<if test="bak2 !=null and bak2.length()!=0 ">
+			AND BAK2=#{bak2}
+		</if>
+		<if test="bak3 !=null and bak3.length()!=0 ">
+			AND BAK3=#{bak3}
+		</if>
+		<if test="bak4 !=null and bak4.length()!=0 ">
+			AND BAK4=#{bak4}
+		</if>
+		<if test="bak5 !=null and bak5.length()!=0 ">
+			AND BAK5=#{bak5}
+		</if>
+		<if test="1 == 1 ">
+			AND 1=1
+		</if>
+    </sql>	
+  
+  <sql id="Base_Column_List" >
+    ROLEID, ROLENAME, ROLETYPE, ROLECODE, STARTTIME, ENDTIME, STATUS, BAK1, BAK2, BAK3, 
+    BAK4, BAK5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_role
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ht_role
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ct.modules.sys.entity.Role" >
+    insert into ht_role (ROLEID, ROLENAME, ROLETYPE, 
+      ROLECODE, STARTTIME, ENDTIME, 
+      STATUS, BAK1, BAK2, 
+      BAK3, BAK4, BAK5)
+    values (#{roleid,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{roletype,jdbcType=DECIMAL}, 
+      #{rolecode,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}, #{endtime,jdbcType=DATE}, 
+      #{status,jdbcType=DECIMAL}, #{bak1,jdbcType=VARCHAR}, #{bak2,jdbcType=VARCHAR}, 
+      #{bak3,jdbcType=VARCHAR}, #{bak4,jdbcType=VARCHAR}, #{bak5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ct.modules.sys.entity.Role" >
+    insert into ht_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        ROLEID,
+      </if>
+      <if test="rolename != null" >
+        ROLENAME,
+      </if>
+      <if test="roletype != null" >
+        ROLETYPE,
+      </if>
+      <if test="rolecode != null" >
+        ROLECODE,
+      </if>
+      <if test="starttime != null" >
+        STARTTIME,
+      </if>
+      <if test="endtime != null" >
+        ENDTIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="bak1 != null" >
+        BAK1,
+      </if>
+      <if test="bak2 != null" >
+        BAK2,
+      </if>
+      <if test="bak3 != null" >
+        BAK3,
+      </if>
+      <if test="bak4 != null" >
+        BAK4,
+      </if>
+      <if test="bak5 != null" >
+        BAK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null" >
+        #{roletype,jdbcType=DECIMAL},
+      </if>
+      <if test="rolecode != null" >
+        #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="bak1 != null" >
+        #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="bak3 != null" >
+        #{bak3,jdbcType=VARCHAR},
+      </if>
+      <if test="bak4 != null" >
+        #{bak4,jdbcType=VARCHAR},
+      </if>
+      <if test="bak5 != null" >
+        #{bak5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ct.modules.sys.entity.Role" >
+    update ht_role
+    <set >
+      <if test="rolename != null" >
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null" >
+        ROLETYPE = #{roletype,jdbcType=DECIMAL},
+      </if>
+      <if test="rolecode != null" >
+        ROLECODE = #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        STARTTIME = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        ENDTIME = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="bak1 != null" >
+        BAK1 = #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        BAK2 = #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="bak3 != null" >
+        BAK3 = #{bak3,jdbcType=VARCHAR},
+      </if>
+      <if test="bak4 != null" >
+        BAK4 = #{bak4,jdbcType=VARCHAR},
+      </if>
+      <if test="bak5 != null" >
+        BAK5 = #{bak5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ct.modules.sys.entity.Role" >
+    update ht_role
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLETYPE = #{roletype,jdbcType=DECIMAL},
+      ROLECODE = #{rolecode,jdbcType=VARCHAR},
+      STARTTIME = #{starttime,jdbcType=DATE},
+      ENDTIME = #{endtime,jdbcType=DATE},
+      STATUS = #{status,jdbcType=DECIMAL},
+      BAK1 = #{bak1,jdbcType=VARCHAR},
+      BAK2 = #{bak2,jdbcType=VARCHAR},
+      BAK3 = #{bak3,jdbcType=VARCHAR},
+      BAK4 = #{bak4,jdbcType=VARCHAR},
+      BAK5 = #{bak5,jdbcType=VARCHAR}
+    where ROLEID = #{roleid,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="getAllByPage" parameterType="com.ct.modules.sys.entity.Role" resultMap="BaseResultMap">
+ 		select * from ht_role   where  status = 1 order by  ${sort} ${order}
+         				
+	</select> 
+	
+		<!-- 
+#############################################################################
+##########   查询具体的某条数据    ******get               ##############
+#############################################################################
+-->
+    <select id="get" parameterType="com.ct.modules.sys.entity.Role" resultType="com.ct.modules.sys.entity.Role">
+		select  ROLEID, ROLENAME, ROLETYPE, ROLECODE, STARTTIME, ENDTIME, STATUS, BAK1, BAK2, BAK3, 
+    BAK4, BAK5
+		from ht_role
+		<where>
+			<include  refid="SQL_ROLE_WHERE"/>
+		</where> 
+	</select>
+	
+	
+	<select id="getAll" parameterType="com.ct.modules.sys.entity.Role" resultType="com.ct.modules.sys.entity.Role">
+         				select * 
+         				from ht_role t where t.status = 1
+	</select> 
+	
+	<insert id="insertRoleMenu" parameterType="com.ct.modules.sys.entity.RoleMenu" >
+    insert into ht_role_menu (ROLEID, MENUID, STATUS
+      )
+    values (#{roleid,jdbcType=VARCHAR}, #{menuid,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}
+      )
+  </insert>
+  
+</mapper>

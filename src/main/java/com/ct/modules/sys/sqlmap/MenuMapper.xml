@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="menuMapper" >
+  <resultMap id="BaseResultMap" type="com.ct.modules.sys.entity.Menu" >
+    <result column="MENUID" property="menuid" jdbcType="VARCHAR" />
+    <result column="MENUNAME" property="menuname" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="IMG" property="img" jdbcType="VARCHAR" />
+    <result column="ORDERID" property="orderid" jdbcType="DECIMAL" />
+    <result column="ISMENU" property="ismenu" jdbcType="DECIMAL" />
+    <result column="MENUTYPE" property="menutype" jdbcType="DECIMAL" />
+    <result column="STARTTIME" property="starttime" jdbcType="DATE" />
+    <result column="ENDTIME" property="endtime" jdbcType="DATE" />
+    <result column="BAK1" property="bak1" jdbcType="VARCHAR" />
+    <result column="BAK2" property="bak2" jdbcType="VARCHAR" />
+    <result column="BAK3" property="bak3" jdbcType="VARCHAR" />
+    <result column="BAK4" property="bak4" jdbcType="VARCHAR" />
+    <result column="BAK5" property="bak5" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ct.modules.sys.entity.Menu" >
+    insert into ht_menu (MENUID, MENUNAME, PID, 
+      URL, IMG, ORDERID, 
+      ISMENU, MENUTYPE, STARTTIME, 
+      ENDTIME, BAK1, BAK2, BAK3, 
+      BAK4, BAK5)
+    values (#{menuid,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{orderid,jdbcType=DECIMAL}, 
+      #{ismenu,jdbcType=DECIMAL}, #{menutype,jdbcType=DECIMAL}, #{starttime,jdbcType=DATE}, 
+      #{endtime,jdbcType=DATE}, #{bak1,jdbcType=VARCHAR}, #{bak2,jdbcType=VARCHAR}, #{bak3,jdbcType=VARCHAR}, 
+      #{bak4,jdbcType=VARCHAR}, #{bak5,jdbcType=VARCHAR})
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ct.modules.sys.entity.Menu">
+    update HT_MENU
+    <set>
+      <if test="menuname != null">
+        MENUNAME = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        IMG = #{img,jdbcType=VARCHAR},
+      </if>
+     
+      <if test="orderid != null">
+        ORDERID = #{orderid,jdbcType=DECIMAL},
+      </if>
+      <if test="ismenu != null">
+        ISMENU = #{ismenu,jdbcType=DECIMAL},
+      </if>
+      <if test="menutype != null">
+        MENUTYPE = #{menutype,jdbcType=DECIMAL},
+      </if>
+      <if test="starttime != null">
+        STARTTIME = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        ENDTIME = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="bak1 != null">
+        BAK1 = #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null">
+        BAK2 = #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="bak3 != null">
+        BAK3 = #{bak3,jdbcType=VARCHAR},
+      </if>
+      <if test="bak4 != null">
+        BAK4 = #{bak4,jdbcType=VARCHAR},
+      </if>
+      <if test="bak5 != null">
+        BAK5 = #{bak5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </update>
+  
+ 
+  
+  <!-- 根据主键删除 -->	
+  	<delete id="deleteByPrimaryKey" parameterType="com.ct.modules.sys.entity.Menu" >
+	    delete from ht_menu
+	    where menuid = #{menuid}
+	</delete>
+  
+  
+  <select id="getAllByCsrid" parameterType="com.ct.modules.sys.entity.Menu" resultType="com.ct.modules.sys.entity.Menu">
+	SELECT DISTINCT p.menuid, p.pid, p.menuname, p.img, p.URL
+	  FROM ht_role_menu  rp
+	 INNER JOIN ht_role  r
+	    ON rp.roleid = r.roleid
+	 INNER JOIN ht_csr_role  ur
+	    ON rp.roleid = ur.roleid
+	 INNER JOIN ht_csr  u
+	    ON u.user_id = ur.csrid
+	 INNER JOIN ht_menu  p
+	    ON rp.menuid = p.menuid
+	where u.STATUS =1
+	 
+	 <if test="csrid !=null and csrid.length()!=0 ">
+			AND u.user_id = #{csrid}
+		</if>
+		
+		order by   p.orderid 
+	</select>
+	
+	 <select id="getTreeDataAdd" resultType="com.ct.modules.sys.entity.Menu" parameterType="com.ct.modules.sys.entity.Menu" >
+	    select  * from ht_menu t order by  t.orderid 
+  	</select>
+  	
+  	<select id="getTreeMenuAdd" resultType="com.ct.modules.sys.entity.Menu" parameterType="com.ct.modules.sys.entity.Menu" >
+	    select  * from ht_menu t  where   t.ismenu=1 order by   t.orderid 
+  	</select>
+  	
+  	 <!-- 通过menuid获取当前对象  ad by 马飞 -->
+  <select id="getMenuByMenuid" parameterType="com.ct.modules.sys.entity.Menu" resultType="com.ct.modules.sys.entity.Menu">
+		select  *
+		from ht_menu t
+		 where 
+     	t.menuid = #{menuid} 
+	</select>
+  
+</mapper>

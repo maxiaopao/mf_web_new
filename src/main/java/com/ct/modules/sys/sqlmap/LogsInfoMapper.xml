@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="logsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ct.modules.sys.entity.LogsInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="MODULE" property="module" jdbcType="VARCHAR" />
+    <result column="METHODS" property="methods" jdbcType="VARCHAR" />
+    <result column="ACTIONTIME" property="actiontime" jdbcType="VARCHAR" />
+    <result column="USERIP" property="userip" jdbcType="VARCHAR" />
+    <result column="OPERTIME" property="opertime" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="METHODNAME" property="methodname" jdbcType="VARCHAR" />
+    <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
+    <result column="MENU_URL" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="LOGS_TYPE" property="logsType" jdbcType="VARCHAR" />
+    <result column="BAK4" property="bak4" jdbcType="VARCHAR" />
+    <result column="BAK5" property="bak5" jdbcType="VARCHAR" />
+    <result column="BAK1" property="bak1" jdbcType="VARCHAR" />
+    <result column="BAK2" property="bak2" jdbcType="VARCHAR" />
+    <result column="BAK3" property="bak3" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ct.modules.sys.entity.LogsInfo" >
+    insert into LOGS_INFO (ID, ACCOUNT, MODULE, 
+      METHODS, ACTIONTIME, USERIP, 
+      OPERTIME, DESCRIPTION, METHODNAME, 
+      MENU_NAME, MENU_URL, LOGS_TYPE, 
+      BAK4, BAK5, BAK1, BAK2, 
+      BAK3)
+    values (#{id,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, 
+      #{methods,jdbcType=VARCHAR}, #{actiontime,jdbcType=VARCHAR}, #{userip,jdbcType=VARCHAR}, 
+      #{opertime}, #{description,jdbcType=VARCHAR}, #{methodname,jdbcType=VARCHAR}, 
+      #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, #{logsType,jdbcType=VARCHAR}, 
+      #{bak4,jdbcType=VARCHAR}, #{bak5,jdbcType=VARCHAR}, #{bak1,jdbcType=VARCHAR}, #{bak2,jdbcType=VARCHAR}, 
+      #{bak3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ct.modules.sys.entity.LogsInfo" >
+    insert into LOGS_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="module != null" >
+        MODULE,
+      </if>
+      <if test="methods != null" >
+        METHODS,
+      </if>
+      <if test="actiontime != null" >
+        ACTIONTIME,
+      </if>
+      <if test="userip != null" >
+        USERIP,
+      </if>
+      <if test="opertime != null" >
+        OPERTIME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="methodname != null" >
+        METHODNAME,
+      </if>
+      <if test="menuName != null" >
+        MENU_NAME,
+      </if>
+      <if test="menuUrl != null" >
+        MENU_URL,
+      </if>
+      <if test="logsType != null" >
+        LOGS_TYPE,
+      </if>
+      <if test="bak4 != null" >
+        BAK4,
+      </if>
+      <if test="bak5 != null" >
+        BAK5,
+      </if>
+      <if test="bak1 != null" >
+        BAK1,
+      </if>
+      <if test="bak2 != null" >
+        BAK2,
+      </if>
+      <if test="bak3 != null" >
+        BAK3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="methods != null" >
+        #{methods,jdbcType=VARCHAR},
+      </if>
+      <if test="actiontime != null" >
+        #{actiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="userip != null" >
+        #{userip,jdbcType=VARCHAR},
+      </if>
+      <if test="opertime != null" >
+        #{opertime,jdbcType=DATE},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="methodname != null" >
+        #{methodname,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="logsType != null" >
+        #{logsType,jdbcType=VARCHAR},
+      </if>
+      <if test="bak4 != null" >
+        #{bak4,jdbcType=VARCHAR},
+      </if>
+      <if test="bak5 != null" >
+        #{bak5,jdbcType=VARCHAR},
+      </if>
+      <if test="bak1 != null" >
+        #{bak1,jdbcType=VARCHAR},
+      </if>
+      <if test="bak2 != null" >
+        #{bak2,jdbcType=VARCHAR},
+      </if>
+      <if test="bak3 != null" >
+        #{bak3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+   <select id="findAllByPage" parameterType="com.ct.modules.sys.entity.LogsInfo" resultMap="BaseResultMap">
+	
+	select * from LOGS_INFO  order by  ${sort} ${order} 
+	
+	</select> 
+</mapper>
