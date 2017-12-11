@@ -2,7 +2,7 @@
 #eclipse files
 .classpath
 .project
-
+.settings/
 # Built application files
 *.apk
 *.ap_
